@@ -1,23 +1,3 @@
-drop table campaign;
-
-CREATE TABLE campaign(
-    cf_id   INTEGER NOT NULL,
-   	contact_id int NOT NULL,
-	company_name varchar(80),
-	description varchar(80) NOT NULL,
-    goal float NOT NULL,
-	pledged float NOT NULL,
-	outcome varchar (20), 
-	backers_count int,
-	country varchar(2),
-	currency varchar (10),
-	launched_date  timestamp ,
-	end_date timestamp ,
-	category_id varchar(20) NOT NULL,
-	subcategory_id varchar(20) NOT NULL,
-    	PRIMARY KEY (cf_id )
-	
-	);
 #-----------------------------------
 DROP TABLE category;
  
@@ -27,7 +7,6 @@ CREATE TABLE category (
     	PRIMARY KEY (category_id)
 	);
 select * from category
-
 
 #-----------------------------------
 DROP TABLE subcategory;
@@ -52,6 +31,36 @@ CREATE TABLE contacts(
 	);
 	
 select * from contacts;
+
+
+
+
+------
+drop table campaign;
+
+CREATE TABLE campaign(
+    cf_id   INTEGER NOT NULL,
+   	contact_id int NOT NULL,
+	company_name varchar(80),
+	description varchar(80) NOT NULL,
+    goal float NOT NULL,
+	pledged float NOT NULL,
+	outcome varchar (20), 
+	backers_count int,
+	country varchar(2),
+	currency varchar (10),
+	launched_date  timestamp ,
+	end_date timestamp ,
+	category_id varchar(20) NOT NULL,
+	subcategory_id varchar(20) NOT NULL,
+    	PRIMARY KEY (cf_id ),
+		FOREIGN KEY (category_id) REFERENCES category(category_id),
+		FOREIGN KEY (subcategory_id) REFERENCES subcategory(subcategory_id),
+		FOREIGN KEY (contact_id) REFERENCES contacts(contact_id)
+	);
+	
+select * from  campaign
+
 
 
 --Query testing
